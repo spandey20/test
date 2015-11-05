@@ -1,0 +1,13 @@
+<% if !@recent.blank? %>
+  <div class="recent">
+    <h3>Recent Searches</h3>
+    <% @recent.reverse.slice(0, 5).each do |art| %>
+    <div class="card">
+      <a href="<%= artist_path(art.mbid) %>">
+        <span><%= image_tag(art.image) %></span><br>
+        <span><%= art.name %></span>
+      </a>
+    </div>
+    <% end %>
+  </div>
+<% end %>

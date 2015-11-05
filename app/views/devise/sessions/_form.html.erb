@@ -1,0 +1,14 @@
+<p>Login or <%= link_to("Sign up", new_user_registration_path) %></p>
+<%= form_for(resource, :url => session_path(resource_name)) do |f| %>
+	<%if flash[:alert]%>    
+    	<%= flash[:alert].html_safe %>
+  	<%end%>
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+  <%= f.submit value: 'Login' %>
+
+<% end %>
+

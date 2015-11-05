@@ -1,0 +1,6 @@
+development: 
+  api_key: 1ca2cf614eeaa185c2b61753b434b599
+  base_url: "http://ws.audioscrobbler.com/2.0/"
+production: 
+  api_key: 1ca2cf614eeaa185c2b61753b434b599
+  base_url: "http://ws.audioscrobbler.com/2.0/"

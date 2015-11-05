@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Songs</title>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body>
+<div class="header-section">
+	<h1 class="left-align remove-margin"><%= link_to 'Artist Club', root_path %></h1>
+	<span class="right-align">
+		<% if user_signed_in? %>
+			<%= link_to("Logout", destroy_user_session_path, method: 'delete') %>
+		<% end %>
+	</span>
+</div>
+<div class="clear-both"></div>
+<div class="main">
+	<%= yield %>
+</div>
+
+<script type="text/javascript">
+	$.facebox.settings.closeImage = "<%= image_path('closelabel.png') %>"
+	$.facebox.settings.loadingImage = "<%= image_path('loading.gif') %>"
+	$('#login-id').click(function() {
+		  jQuery.get('<%= user_session_path(:format => :js) %>');
+	})
+</script>
+<%= yield :scripts %>
+
+</body>
+</html>

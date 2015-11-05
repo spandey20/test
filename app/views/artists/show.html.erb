@@ -1,0 +1,69 @@
+<div>
+  <%= render :partial => 'search' %>
+</div>
+
+<div>
+	<div>
+		<h2><%= @artist.name %> | Listeners <%= @artist.listeners %></h2>
+		<p><%= image_tag(@artist.image) %></p>
+	</div>
+	<div>
+		<div class="normal-margin">
+			<h3>Top Tracks</h3>
+			<table class="my-table">
+				<thead>
+					<tr>
+						<td>Serial</td>
+						<td>Name</td>
+						<td>Playcount</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @artist.tracks.slice(0, 10).each_with_index do|track, i| %>
+						<tr>
+							<td><%= i + 1 %></td>
+							<td><%= track.name %></td>
+							<td><%= track.playcount %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="normal-margin">
+			<h3>Top Albums</h3>
+			<table class="my-table">
+				<thead>
+					<tr>
+						<td>Serial</td>
+						<td>Name</td>
+						<td>Playcount</td>
+					</tr>
+				</thead>
+				<% @artist.albums.slice(0, 10).each_with_index do|album, i| %>
+					<tr>
+						<td><%= i + 1 %></td>
+						<td><%= album.name %></td>
+						<td><%= album.playcount %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+
+	<div class="normal-margin">
+		<h3>Similar Artists</h3>
+			<% @artist.similar_artists.select{|v| !v.mbid.blank?}.slice(0, 5).each_with_index do|artist, i| %>
+				<div class="card">
+					<a href="<%= artist_path(artist.mbid) %>">
+						<span><%= image_tag(artist.image) %></span>
+						<span class="block-space"><%= artist.name %></span>						
+					</a>
+				</div>
+			<% end %>
+	</div>
+	<div class="clear-both"></div>
+
+</div>
+
+<%= render :partial => 'recent' %>
